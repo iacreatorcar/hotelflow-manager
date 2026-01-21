@@ -34,14 +34,13 @@ body {
 }
 
 .container {
-    max-width: 1400px;  /* Aumenta questo valore */
+    max-width: 1600px;  /* MODIFICATO: da 1400px a 1600px */
     margin: 0 auto;
     background: white;
     border-radius: var(--radius-lg);
     overflow: hidden;
     box-shadow: var(--shadow-dark);
 }
-
 
 /* Header AGGIORNATO */
 .header {
@@ -113,11 +112,12 @@ body {
 /* Main Navigation */
 .main-nav {
     display: flex;
-    gap: 5px;
+    gap: 10px;  /* AUMENTATO: da 5px a 10px */
     background: rgba(255, 255, 255, 0.1);
     padding: 8px;
     border-radius: var(--radius-md);
     backdrop-filter: blur(10px);
+    margin-right: 20px;  /* AGGIUNTO: spazio dopo Report */
 }
 
 .nav-link {
@@ -126,7 +126,7 @@ body {
     gap: 10px;
     color: rgba(255, 255, 255, 0.9);
     text-decoration: none;
-    padding: 12px 20px;
+    padding: 12px 24px;  /* AUMENTATO: da 20px a 24px */
     border-radius: var(--radius-sm);
     transition: var(--transition);
     font-weight: 500;
@@ -347,7 +347,7 @@ body {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
-    max-width: 90%;
+    max-width: 100%;  /* MODIFICATO: da 90% a 100% */
 }
 
 .stat-item {
@@ -604,7 +604,7 @@ body {
     font-size: 0.9rem;
 }
 
-/* Tech Stack */
+/* Tech Stack - AGGIORNATA */
 .tech-stack {
     padding: 60px 40px;
     background: linear-gradient(135deg, #f8fafc 0%, #f0f5ff 100%);
@@ -615,7 +615,7 @@ body {
     justify-content: center;
     flex-wrap: wrap;
     gap: 40px;
-    max-width: 800px;
+    max-width: 1000px;  /* AUMENTATO: più spazio */
     margin: 0 auto;
 }
 
@@ -633,6 +633,7 @@ body {
 
 .tech-item i {
     font-size: 3.5rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .tech-item span {
@@ -640,13 +641,15 @@ body {
     color: var(--dark-color);
 }
 
-/* Colori icone tecnologiche */
-.html-color { color: #e34f26; }
-.css-color { color: #1572b6; }
-.js-color { color: #f7df1e; }
-.python-color { color: #3776ab; }
-.db-color { color: #336791; }
-.git-color { color: #f05032; }
+/* Colori icone tecnologiche - AGGIORNATI */
+.fa-html5 { color: #e34f26; }
+.fa-css3-alt { color: #1572b6; }
+.fa-js-square { color: #f7df1e; }
+.fa-python { color: #3776ab; }
+.fa-database { color: #336791; }
+.fa-git-alt { color: #f05032; }
+.fa-chart-bar { color: #4CAF50; }
+.fa-mobile-alt { color: #9C27B0; }
 
 /* Main Footer */
 .main-footer {
@@ -743,6 +746,7 @@ body {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     flex-wrap: wrap;
     gap: 20px;
+    text-align: center;  /* AGGIUNTO */
 }
 
 .footer-bottom p {
@@ -753,6 +757,8 @@ body {
 .footer-social {
     display: flex;
     gap: 15px;
+    justify-content: center;  /* AGGIUNTO */
+    margin-top: 20px;  /* AGGIUNTO */
 }
 
 .footer-social a {
@@ -773,7 +779,25 @@ body {
     transform: translateY(-3px);
 }
 
-/* Responsive */
+/* ===== FIX PER ICONE ===== */
+i[class^="fa-"], i[class*=" fa-"] {
+    opacity: 1;
+    visibility: visible;
+    display: inline-block;
+}
+
+.fas, .fab, .far, .fal {
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1400px) {
+    .container {
+        max-width: 95%;
+    }
+}
+
 @media (max-width: 1200px) {
     .hero-section {
         flex-direction: column;
@@ -807,6 +831,7 @@ body {
         width: 100%;
         justify-content: center;
         flex-wrap: wrap;
+        margin-right: 0;
     }
     
     .user-actions {
@@ -886,6 +911,144 @@ body {
     .nav-link i {
         font-size: 1.2rem;
     }
+    
+    /* Mobile optimization specifica */
+    .header {
+        padding: 15px;
+        flex-wrap: wrap;
+    }
+    
+    .logo {
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 15px;
+    }
+    
+    .logo-image {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .logo-title {
+        font-size: 1.4rem;
+    }
+    
+    .logo-subtitle {
+        font-size: 0.7rem;
+    }
+    
+    .nav-badge {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        font-size: 0.6rem;
+        padding: 1px 5px;
+        min-width: 18px;
+    }
+    
+    .user-actions {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .user-profile {
+        padding: 6px 12px;
+    }
+    
+    .user-name {
+        font-size: 0.9rem;
+    }
+    
+    .user-role {
+        font-size: 0.7rem;
+    }
+    
+    .hero-section {
+        padding: 30px 20px;
+    }
+    
+    .hero-title {
+        text-align: center;
+    }
+    
+    .hero-description {
+        text-align: center;
+        max-width: 100%;
+    }
+    
+    .hero-actions {
+        gap: 10px;
+    }
+    
+    .btn {
+        padding: 14px;
+    }
+    
+    .hero-stats {
+        gap: 10px;
+    }
+    
+    .stat-item {
+        padding: 15px 10px;
+    }
+    
+    .stat-number {
+        font-size: 1.6rem;
+    }
+    
+    .stat-label {
+        font-size: 0.8rem;
+    }
+    
+    .demo-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+        padding: 20px;
+    }
+    
+    .demo-icon {
+        font-size: 1.8rem;
+        padding: 12px;
+    }
+    
+    .features-grid {
+        padding: 40px 20px;
+    }
+    
+    .section-header h2 {
+        font-size: 1.8rem;
+    }
+    
+    .features-container {
+        gap: 20px;
+    }
+    
+    .feature-card {
+        padding: 25px;
+    }
+    
+    .tech-icons {
+        gap: 20px;
+    }
+    
+    .tech-item i {
+        font-size: 2.5rem;
+    }
+    
+    .main-footer {
+        padding: 30px 20px 20px;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        text-align: center;
+    }
+    
+    .footer-logo {
+        justify-content: center;
+    }
 }
 
 @media (max-width: 480px) {
@@ -915,356 +1078,15 @@ body {
     }
     
     .demo-content {
-        flex-direction: column;
-        text-align: center;
         gap: 20px;
     }
 }
-/* ===== MOBILE OPTIMIZATION ===== */
-@media (max-width: 768px) {
-    /* Header mobile */
-    .header {
-        padding: 15px;
-        flex-wrap: wrap;
-    }
-    
-    .logo {
-        width: 100%;
-        justify-content: center;
-        margin-bottom: 15px;
-    }
-    
-    .logo-image {
-        width: 45px;
-        height: 45px;
-    }
-    
-    .logo-title {
-        font-size: 1.4rem;
-    }
-    
-    .logo-subtitle {
-        font-size: 0.7rem;
-    }
-    
-    /* Navigation mobile */
-    .main-nav {
-        order: 3;
-        width: 100%;
-        justify-content: space-between;
-        margin-top: 15px;
-        padding: 5px;
-    }
-    
-    .nav-link {
-        flex-direction: column;
-        padding: 8px 5px;
-        font-size: 0.7rem;
-        min-width: 60px;
-    }
-    
-    .nav-link i {
-        font-size: 1.2rem;
-        margin-bottom: 5px;
-    }
-    
-    .nav-link span:not(.nav-badge) {
-        display: none;
-    }
-    
-    .nav-badge {
-        position: absolute;
-        top: -5px;
-        right: -5px;
-        font-size: 0.6rem;
-        padding: 1px 5px;
-        min-width: 18px;
-    }
-    
-    /* User profile mobile */
-    .user-actions {
-        order: 2;
-        width: 100%;
-        justify-content: center;
-    }
-    
-    .user-profile {
-        padding: 6px 12px;
-    }
-    
-    .user-name {
-        font-size: 0.9rem;
-    }
-    
-    .user-role {
-        font-size: 0.7rem;
-    }
-    
-    /* Hero section mobile */
-    .hero-section {
-        padding: 30px 20px;
-    }
-    
-    .hero-title {
-        font-size: 1.8rem;
-        text-align: center;
-    }
-    
-    .hero-description {
-        font-size: 1rem;
-        text-align: center;
-        max-width: 100%;
-    }
-    
-    .hero-actions {
-        flex-direction: column;
-        gap: 10px;
-    }
-    
-    .btn {
-        width: 100%;
-        justify-content: center;
-        padding: 14px;
-    }
-    
-    /* Stats mobile */
-    .hero-stats {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-    }
-    
-    .stat-item {
-        padding: 15px 10px;
-    }
-    
-    .stat-number {
-        font-size: 1.6rem;
-    }
-    
-    .stat-label {
-        font-size: 0.8rem;
-    }
-    
-    /* Demo banner mobile */
-    .demo-banner {
-        margin: 0 15px 20px;
-    }
-    
-    .demo-content {
-        flex-direction: column;
-        text-align: center;
-        gap: 15px;
-        padding: 20px;
-    }
-    
-    .demo-icon {
-        font-size: 1.8rem;
-        padding: 12px;
-    }
-    
-    /* Features mobile */
-    .features-grid {
-        padding: 40px 20px;
-    }
-    
-    .section-header h2 {
-        font-size: 1.8rem;
-    }
-    
-    .features-container {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-    
-    .feature-card {
-        padding: 25px;
-    }
-    
-    /* Tech stack mobile */
-    .tech-stack {
-        padding: 40px 20px;
-    }
-    
-    .tech-icons {
-        gap: 20px;
-    }
-    
-    .tech-item i {
-        font-size: 2.5rem;
-    }
-    
-    /* Footer mobile */
-    .main-footer {
-        padding: 30px 20px 20px;
-    }
-    
-    .footer-content {
-        grid-template-columns: 1fr;
-        gap: 30px;
-        text-align: center;
-    }
-    
-    .footer-logo {
-        justify-content: center;
-    }
-    
-    .footer-bottom {
-        flex-direction: column;
-        gap: 15px;
-        text-align: center;
-    }
-}
 
-/* ===== FIX VISIBILITY ISSUES ===== */
-/* Assicura che tutte le icone siano visibili */
-i[class^="fa-"], i[class*=" fa-"] {
-    opacity: 1 !important;
-    visibility: visible !important;
-    display: inline-block !important;
-}
-
-/* Fix per FontAwesome CDN */
-.fas, .fab, .far, .fal {
-    font-family: 'Font Awesome 6 Free' !important;
-    font-weight: 900 !important;
-}
-
-/* Fix per hero icon visibility */
-.hero-visual .chart-icon {
-    font-size: 4rem !important;
-    opacity: 1 !important;
-    z-index: 10 !important;
-}
-
-/* ===== CACHE BUSTING ===== */
-/* Aggiungi questo per forzare il refresh del CSS */
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css?ver=' + new Date().getTime());
-@media (min-width: 1200px) {
-    .container {
-        max-width: 1600px;
-    }
-    
-    .main-nav {
-        gap: 15px;
-    }
-    
-    .nav-link {
-        padding: 12px 25px;
-    }
-}
-/* ===== ULTIME MODIFICHE ===== */
-
-/* 1. Container più largo per schermi grandi */
-@media (min-width: 1400px) {
-    .container {
-        max-width: 1600px !important;
-    }
-    
-    .main-nav {
-        gap: 10px !important;
-    }
-    
-    .nav-link {
-        padding: 12px 24px !important;
-    }
-}
-
-/* 2. Aggiungi più spazio dopo "Report" */
-.main-nav {
-    margin-right: 20px;
-}
-
-/* 3. Icone tecnologiche colorate */
-.tech-icons {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 30px;
-    margin-top: 30px;
-}
-
-.tech-item {
-    text-align: center;
-    transition: transform 0.3s ease;
-}
-
-.tech-item:hover {
-    transform: translateY(-5px);
-}
-
-.tech-item i {
-    font-size: 3rem;
-    margin-bottom: 10px;
-}
-
-.tech-item span {
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: #333;
-}
-
-/* 4. Colori specifici per ogni icona */
-.fa-html5 { color: #E34F26; }
-.fa-css3-alt { color: #1572B6; }
-.fa-js-square { color: #F7DF1E; }
-.fa-python { color: #3776AB; }
-.fa-database { color: #336791; }
-.fa-git-alt { color: #F05032; }
-.fa-chart-bar { color: #36A2EB; }
-.fa-mobile-alt { color: #7E57C2; }
-
-/* 5. Fix per layout stretto */
-@media (min-width: 768px) {
-    .features-container {
-        grid-template-columns: repeat(3, 1fr) !important;
-        gap: 25px !important;
-    }
-    
-    .hero-stats {
-        max-width: 100% !important;
-    }
-}
-
-/* 6. Footer migliorato */
-.footer-bottom {
-    text-align: center;
-    padding-top: 30px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.footer-social {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 20px;
-}
-
-/* 7. Fix per il logo se non si vede */
-.logo-image {
-    width: 60px !important;
-    height: 60px !important;
-    border-radius: 10px !important;
-    border: 3px solid rgba(255, 255, 255, 0.2) !important;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
-    background: white !important;
-    padding: 5px !important;
-}
-
-/* 8. Assicura che tutto il contenuto sia visibile */
+/* Assicura che tutto sia visibile */
 body {
     overflow-x: hidden;
 }
 
 .container {
-    overflow: visible !important;
-}
-
-/* 9. Migliora la visibilità delle icone */
-i[class*="fa-"] {
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* 10. Aggiungi margine alla sezione tech */
-.tech-stack {
-    padding: 60px 40px !important;
+    overflow: visible;
 }
