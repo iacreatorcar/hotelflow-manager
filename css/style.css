@@ -34,13 +34,14 @@ body {
 }
 
 .container {
-    max-width: 1400px;
+    max-width: 1400px;  /* Aumenta questo valore */
     margin: 0 auto;
     background: white;
     border-radius: var(--radius-lg);
     overflow: hidden;
     box-shadow: var(--shadow-dark);
 }
+
 
 /* Header AGGIORNATO */
 .header {
@@ -1138,3 +1139,132 @@ i[class^="fa-"], i[class*=" fa-"] {
 /* ===== CACHE BUSTING ===== */
 /* Aggiungi questo per forzare il refresh del CSS */
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css?ver=' + new Date().getTime());
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1600px;
+    }
+    
+    .main-nav {
+        gap: 15px;
+    }
+    
+    .nav-link {
+        padding: 12px 25px;
+    }
+}
+/* ===== ULTIME MODIFICHE ===== */
+
+/* 1. Container più largo per schermi grandi */
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1600px !important;
+    }
+    
+    .main-nav {
+        gap: 10px !important;
+    }
+    
+    .nav-link {
+        padding: 12px 24px !important;
+    }
+}
+
+/* 2. Aggiungi più spazio dopo "Report" */
+.main-nav {
+    margin-right: 20px;
+}
+
+/* 3. Icone tecnologiche colorate */
+.tech-icons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.tech-item {
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.tech-item:hover {
+    transform: translateY(-5px);
+}
+
+.tech-item i {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.tech-item span {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #333;
+}
+
+/* 4. Colori specifici per ogni icona */
+.fa-html5 { color: #E34F26; }
+.fa-css3-alt { color: #1572B6; }
+.fa-js-square { color: #F7DF1E; }
+.fa-python { color: #3776AB; }
+.fa-database { color: #336791; }
+.fa-git-alt { color: #F05032; }
+.fa-chart-bar { color: #36A2EB; }
+.fa-mobile-alt { color: #7E57C2; }
+
+/* 5. Fix per layout stretto */
+@media (min-width: 768px) {
+    .features-container {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 25px !important;
+    }
+    
+    .hero-stats {
+        max-width: 100% !important;
+    }
+}
+
+/* 6. Footer migliorato */
+.footer-bottom {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-social {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* 7. Fix per il logo se non si vede */
+.logo-image {
+    width: 60px !important;
+    height: 60px !important;
+    border-radius: 10px !important;
+    border: 3px solid rgba(255, 255, 255, 0.2) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+    background: white !important;
+    padding: 5px !important;
+}
+
+/* 8. Assicura che tutto il contenuto sia visibile */
+body {
+    overflow-x: hidden;
+}
+
+.container {
+    overflow: visible !important;
+}
+
+/* 9. Migliora la visibilità delle icone */
+i[class*="fa-"] {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 10. Aggiungi margine alla sezione tech */
+.tech-stack {
+    padding: 60px 40px !important;
+}
