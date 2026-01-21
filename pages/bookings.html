@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prenotazioni | HotelFlow Manager</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/bookings.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar (stessa della dashboard) -->
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fas fa-hotel"></i>
+                <h2>HotelFlow<span>Manager</span></h2>
+            </div>
+            
+            <div class="user-info">
+                <i class="fas fa-user-circle"></i>
+                <h3>Admin</h3>
+                <p>Carmine Dalise</p>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="../index.html" class="sidebar-link">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="dashboard.html" class="sidebar-link">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="pages/bookings.html" class="sidebar-link">
+    <i class="fas fa-calendar-check"></i>
+    <span>Prenotazioni</span>
+    <span class="badge" id="booking-count">12</span>
+</a>
+                <a href="rooms.html" class="sidebar-link">
+                    <i class="fas fa-bed"></i>
+                    <span>Camere</span>
+                    <span class="badge">5</span>
+                </a>
+                <a href="guests.html" class="sidebar-link">
+                    <i class="fas fa-users"></i>
+                    <span>Ospiti</span>
+                </a>
+                <a href="#" class="sidebar-link">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Report</span>
+                </a>
+                <a href="#" class="sidebar-link">
+                    <i class="fas fa-cog"></i>
+                    <span>Impostazioni</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="hotel-status">
+                    <div class="status-indicator online"></div>
+                    <span>Sistema Online</span>
+                </div>
+                <p>v1.0.0</p>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header con azioni -->
+            <header class="bookings-header">
+                <h1><i class="fas fa-calendar-check"></i> Gestione Prenotazioni</h1>
+                <div class="header-actions">
+                    <button class="btn-primary" id="new-booking-btn">
+                        <i class="fas fa-plus"></i> Nuova Prenotazione
+                    </button>
+                    <button class="btn-secondary" id="filter-btn">
+                        <i class="fas fa-filter"></i> Filtri
+                    </button>
+                    <button class="btn-secondary" id="print-btn">
+                        <i class="fas fa-print"></i> Stampa
+                    </button>
+                </div>
+            </header>
+
+            <!-- Filtri avanzati (nascosti inizialmente) -->
+            <div class="advanced-filters" id="advanced-filters">
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <label><i class="fas fa-calendar"></i> Data Arrivo</label>
+                        <input type="text" id="filter-checkin" class="datepicker" placeholder="Seleziona data">
+                    </div>
+                    <div class="filter-group">
+                        <label><i class="fas fa-calendar"></i> Data Partenza</label>
+                        <input type="text" id="filter-checkout" class="datepicker" placeholder="Seleziona data">
+                    </div>
+                    <div class="filter-group">
+                        <label><i class="fas fa-bed"></i> Stato Camera</label>
+                        <select id="filter-status">
+                            <option value="">Tutti</option>
+                            <option value="confirmed">Confermata</option>
+                            <option value="pending">In attesa</option>
+                            <option value="checked-in">Check-in</option>
+                            <option value="checked-out">Check-out</option>
+                            <option value="cancelled">Cancellata</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label><i class="fas fa-search"></i> Cerca Ospite</label>
+                        <input type="text" id="filter-guest" placeholder="Nome o cognome">
+                    </div>
+                </div>
+                <div class="filter-actions">
+                    <button class="btn-primary" id="apply-filters">
+                        <i class="fas fa-check"></i> Applica Filtri
+                    </button>
+                    <button class="btn-secondary" id="reset-filters">
+                        <i class="fas fa-redo"></i> Reset
+                    </button>
+                </div>
+            </div>
+
+            <!-- Statistiche veloci -->
+            <div class="booking-stats">
+                <div class="stat-badge total">
+                    <i class="fas fa-list"></i>
+                    <span class="stat-number">45</span>
+                    <span class="stat-label">Totali</span>
+                </div>
+                <div class="stat-badge confirmed">
+                    <i class="fas fa-check-circle"></i>
+                    <span class="stat-number">32</span>
+                    <span class="stat-label">Confermate</span>
+                </div>
+                <div class="stat-badge pending">
+                    <i class="fas fa-clock"></i>
+                    <span class="stat-number">8</span>
+                    <span class="stat-label">In Attesa</span>
+                </div>
+                <div class="stat-badge checked-in">
+                    <i class="fas fa-door-open"></i>
+                    <span class="stat-number">12</span>
+                    <span class="stat-label">Check-in</span>
+                </div>
+                <div class="stat-badge checked-out">
+                    <i class="fas fa-door-closed"></i>
+                    <span class="stat-number">25</span>
+                    <span class="stat-label">Check-out</span>
+                </div>
+            </div>
+
+            <!-- Tabella prenotazioni -->
+            <div class="bookings-table-container">
+                <div class="table-header">
+                    <h3><i class="fas fa-table"></i> Elenco Prenotazioni</h3>
+                    <div class="table-actions">
+                        <div class="view-toggle">
+                            <button class="view-btn active" data-view="list">
+                                <i class="fas fa-list"></i>
+                            </button>
+                            <button class="view-btn" data-view="calendar">
+                                <i class="fas fa-calendar"></i>
+                            </button>
+                        </div>
+                        <div class="entries-select">
+                            <span>Mostra:</span>
+                            <select id="entries-per-page">
+                                <option>10</option>
+                                <option selected>25</option>
+                                <option>50</option>
+                                <option>100</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="bookings-table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <input type="checkbox" id="select-all">
+                                </th>
+                                <th>ID</th>
+                                <th>Ospite</th>
+                                <th>Camera</th>
+                                <th>Check-in</th>
+                                <th>Check-out</th>
+                                <th>Notti</th>
+                                <th>Totale</th>
+                                <th>Stato</th>
+                                <th>Azioni</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bookings-table-body">
+                            <!-- Le prenotazioni verranno caricate qui dinamicamente -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Paginazione -->
+                <div class="pagination">
+                    <button class="pagination-btn" id="prev-page">
+                        <i class="fas fa-chevron-left"></i> Precedente
+                    </button>
+                    <div class="page-numbers">
+                        <span class="page-number active">1</span>
+                        <span class="page-number">2</span>
+                        <span class="page-number">3</span>
+                        <span class="page-dots">...</span>
+                        <span class="page-number">10</span>
+                    </div>
+                    <button class="pagination-btn" id="next-page">
+                        Successivo <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Vista Calendario (nascosta inizialmente) -->
+            <div class="calendar-view" id="calendar-view" style="display: none;">
+                <div class="calendar-header">
+                    <h3><i class="fas fa-calendar-alt"></i> Vista Calendario</h3>
+                    <div class="calendar-nav">
+                        <button id="prev-month"><i class="fas fa-chevron-left"></i></button>
+                        <h4 id="current-month">Gennaio 2024</h4>
+                        <button id="next-month"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                <div class="calendar" id="booking-calendar">
+                    <!-- Il calendario verrà generato dinamicamente -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal Nuova Prenotazione -->
+    <div class="modal" id="booking-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-plus-circle"></i> Nuova Prenotazione</h2>
+                <button class="modal-close">Chiudi</button>
+            </div>
+            <div class="modal-body">
+                <form id="booking-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-user"></i> Ospite *</label>
+                            <div class="guest-select">
+                                <select id="guest-select" required>
+                                    <option value="">Seleziona ospite</option>
+                                    <option value="new">+ Nuovo Ospite</option>
+                                </select>
+                                <button type="button" class="btn-small" id="quick-guest-btn">
+                                    <i class="fas fa-user-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-phone"></i> Telefono *</label>
+                            <input type="tel" id="guest-phone" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-calendar"></i> Data Arrivo *</label>
+                            <input type="text" id="checkin-date" class="datepicker" required>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-calendar"></i> Data Partenza *</label>
+                            <input type="text" id="checkout-date" class="datepicker" required>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-moon"></i> Notti</label>
+                            <input type="number" id="nights" min="1" value="1" readonly>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-bed"></i> Tipo Camera *</label>
+                            <select id="room-type" required>
+                                <option value="">Seleziona tipo</option>
+                                <option value="standard">Standard (€80/notte)</option>
+                                <option value="deluxe">Deluxe (€120/notte)</option>
+                                <option value="suite">Suite (€200/notte)</option>
+                                <option value="family">Famiglia (€150/notte)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-user-friends"></i> Numero Ospiti *</label>
+                            <input type="number" id="guests-count" min="1" max="4" value="1" required>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-bed"></i> Camere *</label>
+                            <input type="number" id="rooms-count" min="1" max="5" value="1" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="fas fa-sticky-note"></i> Note Speciali</label>
+                        <textarea id="booking-notes" rows="3" placeholder="Richieste speciali, allergie..."></textarea>
+                    </div>
+
+                    <div class="price-summary">
+                        <h4><i class="fas fa-receipt"></i> Riepilogo Costi</h4>
+                        <div class="price-details">
+                            <div class="price-row">
+                                <span>Tariffa camera:</span>
+                                <span id="room-rate">€0</span>
+                            </div>
+                            <div class="price-row">
+                                <span>Notti:</span>
+                                <span id="nights-count">0</span>
+                            </div>
+                            <div class="price-row">
+                                <span>Camere:</span>
+                                <span id="rooms-total">1</span>
+                            </div>
+                            <div class="price-row discount">
+                                <span>Sconto:</span>
+                                <input type="number" id="discount" min="0" max="100" value="0" style="width: 60px;"> %
+                            </div>
+                            <div class="price-row total">
+                                <span><strong>TOTALE:</strong></span>
+                                <span id="total-price">€0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary modal-close">Annulla</button>
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-save"></i> Crea Prenotazione
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Dettagli Prenotazione -->
+    <div class="modal" id="detail-modal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h2><i class="fas fa-info-circle"></i> Dettagli Prenotazione</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body" id="booking-detail-content">
+                <!-- I dettagli verranno caricati qui -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/it.js"></script>
+    <script src="../js/bookings.js"></script>
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | HotelFlow Manager</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fas fa-hotel"></i>
+                <h2>HotelFlow<span>Manager</span></h2>
+            </div>
+            
+            <div class="user-info">
+                <i class="fas fa-user-circle"></i>
+                <h3>Admin</h3>
+                <p>Carmine Dalise</p>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="../index.html" class="sidebar-link">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="dashboard.html" class="sidebar-link active">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="bookings.html" class="sidebar-link">
+                    <i class="fas fa-calendar-check"></i>
+                    <span>Prenotazioni</span>
+                    <span class="badge">12</span>
+                </a>
+                <a href="rooms.html" class="sidebar-link">
+                    <i class="fas fa-bed"></i>
+                    <span>Camere</span>
+                    <span class="badge">5</span>
+                </a>
+                <a href="guests.html" class="sidebar-link">
+                    <i class="fas fa-users"></i>
+                    <span>Ospiti</span>
+                </a>
+                <a href="#" class="sidebar-link">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Report</span>
+                </a>
+                <a href="#" class="sidebar-link">
+                    <i class="fas fa-cog"></i>
+                    <span>Impostazioni</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="hotel-status">
+                    <div class="status-indicator online"></div>
+                    <span>Sistema Online</span>
+                </div>
+                <p>v1.0.0</p>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <header class="top-bar">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Cerca prenotazioni, ospiti...">
+                </div>
+                <div class="top-bar-actions">
+                    <button class="notification-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-count">3</span>
+                    </button>
+                    <button class="add-booking-btn">
+                        <i class="fas fa-plus"></i> Nuova Prenotazione
+                    </button>
+                </div>
+            </header>
+
+            <!-- Stats Cards -->
+            <section class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #3b82f6;">
+                        <i class="fas fa-bed"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Camere Totali</h3>
+                        <p class="stat-number" id="total-rooms">50</p>
+                    </div>
+                    <div class="stat-trend up">
+                        <i class="fas fa-arrow-up"></i> 12%
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #10b981;">
+                        <i class="fas fa-door-open"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Occupate</h3>
+                        <p class="stat-number" id="occupied-rooms">35</p>
+                    </div>
+                    <div class="stat-trend up">
+                        <i class="fas fa-arrow-up"></i> 8%
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #f59e0b;">
+                        <i class="fas fa-door-closed"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Disponibili</h3>
+                        <p class="stat-number" id="available-rooms">15</p>
+                    </div>
+                    <div class="stat-trend down">
+                        <i class="fas fa-arrow-down"></i> 5%
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #8b5cf6;">
+                        <i class="fas fa-euro-sign"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Revenue Oggi</h3>
+                        <p class="stat-number" id="today-revenue">€12,540</p>
+                    </div>
+                    <div class="stat-trend up">
+                        <i class="fas fa-arrow-up"></i> 24%
+                    </div>
+                </div>
+            </section>
+
+            <!-- Charts Section -->
+            <section class="charts-section">
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3>Occupazione Mensile</h3>
+                        <select class="chart-filter">
+                            <option>Ultimi 7 giorni</option>
+                            <option>Ultimi 30 giorni</option>
+                            <option>Ultimi 90 giorni</option>
+                        </select>
+                    </div>
+                    <canvas id="occupancyChart"></canvas>
+                </div>
+
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3>Revenue per Tipologia</h3>
+                        <select class="chart-filter">
+                            <option>Settimana</option>
+                            <option>Mese</option>
+                            <option>Anno</option>
+                        </select>
+                    </div>
+                    <canvas id="revenueChart"></canvas>
+                </div>
+            </section>
+
+            <!-- Recent Activity & Check-ins -->
+            <section class="tables-section">
+                <div class="table-container">
+                    <h3>Check-in Oggi <span class="badge">8</span></h3>
+                    <div class="table-scroll">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Camera</th>
+                                    <th>Ospite</th>
+                                    <th>Check-in</th>
+                                    <th>Durata</th>
+                                    <th>Azione</th>
+                                </tr>
+                            </thead>
+                            <tbody id="today-checkins">
+                                <!-- Dinamico -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <h3>Check-out Oggi <span class="badge">5</span></h3>
+                    <div class="table-scroll">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Camera</th>
+                                    <th>Ospite</th>
+                                    <th>Check-out</th>
+                                    <th>Totale</th>
+                                    <th>Azione</th>
+                                </tr>
+                            </thead>
+                            <tbody id="today-checkouts">
+                                <!-- Dinamico -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Actions -->
+            <section class="quick-actions">
+                <button class="quick-btn">
+                    <i class="fas fa-user-plus"></i>
+                    <span>Nuovo Ospite</span>
+                </button>
+                <button class="quick-btn">
+                    <i class="fas fa-bed"></i>
+                    <span>Gestisci Camere</span>
+                </button>
+                <button class="quick-btn">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                    <span>Genera Fattura</span>
+                </button>
+                <button class="quick-btn">
+                    <i class="fas fa-print"></i>
+                    <span>Stampa Report</span>
+                </button>
+            </section>
+        </main>
+    </div>
+
+    <script src="../js/dashboard.js"></script>
+</body>
+</html>

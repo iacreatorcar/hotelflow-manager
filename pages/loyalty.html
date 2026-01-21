@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programma Fedeltà | HotelFlow Manager</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/loyalty.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fas fa-hotel"></i>
+                <h2>HotelFlow<span>Manager</span></h2>
+            </div>
+            
+            <div class="user-info">
+                <i class="fas fa-user-circle"></i>
+                <h3>Admin</h3>
+                <p>Carmine Dalise</p>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="../index.html" class="sidebar-link">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="dashboard.html" class="sidebar-link">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="bookings.html" class="sidebar-link">
+                    <i class="fas fa-calendar-check"></i>
+                    <span>Prenotazioni</span>
+                </a>
+                <a href="rooms.html" class="sidebar-link">
+                    <i class="fas fa-bed"></i>
+                    <span>Camere</span>
+                </a>
+                <a href="guests.html" class="sidebar-link">
+                    <i class="fas fa-users"></i>
+                    <span>Ospiti</span>
+                </a>
+                <a href="loyalty.html" class="sidebar-link active">
+                    <i class="fas fa-crown"></i>
+                    <span>Fedeltà</span>
+                    <span class="badge" id="rewards-count">15</span>
+                </a>
+                <a href="billing.html" class="sidebar-link">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                    <span>Fatturazione</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="hotel-status">
+                    <div class="status-indicator online"></div>
+                    <span>Sistema Online</span>
+                </div>
+                <p>v1.0.0</p>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="loyalty-header">
+                <h1><i class="fas fa-crown"></i> Programma Fedeltà</h1>
+                <div class="header-actions">
+                    <button class="btn-primary" id="add-reward-btn">
+                        <i class="fas fa-gift"></i> Nuova Ricompensa
+                    </button>
+                    <button class="btn-secondary" id="manage-levels">
+                        <i class="fas fa-sliders-h"></i> Gestisci Livelli
+                    </button>
+                    <button class="btn-secondary" id="generate-cards">
+                        <i class="fas fa-id-card"></i> Genera Card
+                    </button>
+                </div>
+            </header>
+
+            <!-- Statistiche Fedeltà -->
+            <div class="loyalty-stats">
+                <div class="loyalty-stat">
+                    <div class="stat-icon members">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h4>Membri Attivi</h4>
+                        <p class="stat-number" id="active-members">156</p>
+                        <p class="stat-change up">+12%</p>
+                    </div>
+                </div>
+                <div class="loyalty-stat">
+                    <div class="stat-icon points">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h4>Punti Totali</h4>
+                        <p class="stat-number" id="total-points">245,800</p>
+                        <p class="stat-change up">+8%</p>
+                    </div>
+                </div>
+                <div class="loyalty-stat">
+                    <div class="stat-icon redeemed">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h4>Premi Riscattati</h4>
+                        <p class="stat-number" id="redeemed-rewards">42</p>
+                        <p class="stat-change up">+15%</p>
+                    </div>
+                </div>
+                <div class="loyalty-stat">
+                    <div class="stat-icon revenue">
+                        <i class="fas fa-euro-sign"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h4>Revenue Fedeltà</h4>
+                        <p class="stat-number" id="loyalty-revenue">€12,500</p>
+                        <p class="stat-change up">+22%</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Livelli Fedeltà -->
+            <section class="loyalty-levels">
+                <h2><i class="fas fa-medal"></i> Livelli Fedeltà</h2>
+                <div class="levels-container">
+                    <div class="level-card bronze">
+                        <div class="level-header">
+                            <i class="fas fa-medal"></i>
+                            <h3>Bronzo</h3>
+                        </div>
+                        <div class="level-body">
+                            <p class="level-points">0 - 999 punti</p>
+                            <ul class="level-benefits">
+                                <li><i class="fas fa-check"></i> Drink di benvenuto</li>
+                                <li><i class="fas fa-check"></i> Sconto 5% sulle prenotazioni</li>
+                                <li><i class="fas fa-check"></i> Check-out fino alle 12:00</li>
+                            </ul>
+                            <div class="level-stats">
+                                <span>85 Membri</span>
+                                <span>25% dei totali</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="level-card silver">
+                        <div class="level-header">
+                            <i class="fas fa-medal"></i>
+                            <h3>Argento</h3>
+                        </div>
+                        <div class="level-body">
+                            <p class="level-points">1,000 - 4,999 punti</p>
+                            <ul class="level-benefits">
+                                <li><i class="fas fa-check"></i> Tutti i benefit Bronzo</li>
+                                <li><i class="fas fa-check"></i> Late check-out (14:00)</li>
+                                <li><i class="fas fa-check"></i> Sconto 10% sulle prenotazioni</li>
+                                <li><i class="fas fa-check"></i> Upgrade camera (se disponibile)</li>
+                            </ul>
+                            <div class="level-stats">
+                                <span>45 Membri</span>
+                                <span>15% dei totali</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="level-card gold">
+                        <div class="level-header">
+                            <i class="fas fa-medal"></i>
+                            <h3>Oro</h3>
+                        </div>
+                        <div class="level-body">
+                            <p class="level-points">5,000 - 9,999 punti</p>
+                            <ul class="level-benefits">
+                                <li><i class="fas fa-check"></i> Tutti i benefit Argento</li>
+                                <li><i class="fas fa-check"></i> Late check-out (16:00)</li>
+                                <li><i class="fas fa-check"></i> Sconto 15% sulle prenotazioni</li>
+                                <li><i class="fas fa-check"></i> Colazione gratuita</li>
+                                <li><i class="fas fa-check"></i> Accesso prioritario al check-in</li>
+                            </ul>
+                            <div class="level-stats">
+                                <span>18 Membri</span>
+                                <span>8% dei totali</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="level-card platinum">
+                        <div class="level-header">
+                            <i class="fas fa-medal"></i>
+                            <h3>Platino</h3>
+                        </div>
+                        <div class="level-body">
+                            <p class="level-points">10,000+ punti</p>
+                            <ul class="level-benefits">
+                                <li><i class="fas fa-check"></i> Tutti i benefit Oro</li>
+                                <li><i class="fas fa-check"></i> Late check-out (18:00)</li>
+                                <li><i class="fas fa-check"></i> Sconto 20% sulle prenotazioni</li>
+                                <li><i class="fas fa-check"></i> Upgrade garantito (se disponibile)</li>
+                                <li><i class="fas fa-check"></i> Sconto 20% SPA & Ristorante</li>
+                                <li><i class="fas fa-check"></i> Regalo compleanno</li>
+                            </ul>
+                            <div class="level-stats">
+                                <span>8 Membri</span>
+                                <span>3% dei totali</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Premi e Ricompense -->
+            <section class="rewards-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-gift"></i> Premi e Ricompense</h2>
+                    <div class="section-actions">
+                        <button class="filter-btn active" data-filter="all">Tutti</button>
+                        <button class="filter-btn" data-filter="available">Disponibili</button>
+                        <button class="filter-btn" data-filter="redeemed">Riscattati</button>
+                        <button class="filter-btn" data-filter="expired">Scaduti</button>
+                    </div>
+                </div>
+                
+                <div class="rewards-grid" id="rewards-grid">
+                    <!-- I premi verranno caricati qui -->
+                </div>
+            </section>
+
+            <!-- Top Membri -->
+            <section class="top-members">
+                <h2><i class="fas fa-trophy"></i> Top Membri Fedeltà</h2>
+                <div class="top-list">
+                    <!-- I top membri verranno caricati qui -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Script -->
+    <script src="../js/loyalty.js"></script>
+</body>
+</html>

@@ -1,0 +1,578 @@
+/* LOYALTY PROGRAM STYLES */
+
+.loyalty-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding: 25px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.loyalty-header h1 {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #1e293b;
+    font-size: 1.8rem;
+}
+
+.loyalty-header h1 i {
+    color: #f59e0b;
+}
+
+.header-actions {
+    display: flex;
+    gap: 15px;
+}
+
+/* Loyalty Stats */
+.loyalty-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.loyalty-stat {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: transform 0.3s;
+}
+
+.loyalty-stat:hover {
+    transform: translateY(-5px);
+}
+
+.stat-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2rem;
+}
+
+.stat-icon.members { background: #3b82f6; }
+.stat-icon.points { background: #8b5cf6; }
+.stat-icon.redeemed { background: #10b981; }
+.stat-icon.revenue { background: #f59e0b; }
+
+.stat-info {
+    flex: 1;
+}
+
+.stat-info h4 {
+    color: #64748b;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.stat-info .stat-number {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 5px;
+}
+
+.stat-change {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.stat-change.up {
+    color: #10b981;
+}
+
+.stat-change.down {
+    color: #ef4444;
+}
+
+/* Loyalty Levels */
+.loyalty-levels {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+}
+
+.loyalty-levels h2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #1e293b;
+    margin-bottom: 25px;
+    font-size: 1.5rem;
+}
+
+.levels-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.level-card {
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+
+.level-card:hover {
+    transform: translateY(-8px);
+}
+
+.level-card.bronze {
+    background: linear-gradient(135deg, #92400e 0%, #b45309 100%);
+}
+
+.level-card.silver {
+    background: linear-gradient(135deg, #6b7280 0%, #9ca3af 100%);
+}
+
+.level-card.gold {
+    background: linear-gradient(135deg, #b45309 0%, #d97706 100%);
+}
+
+.level-card.platinum {
+    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+}
+
+.level-header {
+    padding: 25px;
+    color: white;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.level-header i {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+.level-header h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.level-body {
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.level-points {
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-align: center;
+    opacity: 0.9;
+}
+
+.level-benefits {
+    list-style: none;
+    margin-bottom: 25px;
+}
+
+.level-benefits li {
+    color: white;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.level-benefits li i {
+    margin-top: 3px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.level-stats {
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    font-size: 0.9rem;
+    opacity: 0.8;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Rewards Section */
+.rewards-section {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.section-header h2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #1e293b;
+    font-size: 1.5rem;
+}
+
+.section-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.filter-btn {
+    padding: 8px 16px;
+    background: #f1f5f9;
+    border: none;
+    border-radius: 6px;
+    color: #475569;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.filter-btn:hover {
+    background: #e2e8f0;
+}
+
+.filter-btn.active {
+    background: #3b82f6;
+    color: white;
+}
+
+.rewards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.reward-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s;
+    border: 2px solid transparent;
+}
+
+.reward-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.reward-card.available {
+    border-color: #10b981;
+}
+
+.reward-card.redeemed {
+    border-color: #8b5cf6;
+}
+
+.reward-card.expired {
+    border-color: #64748b;
+    opacity: 0.7;
+}
+
+.reward-image {
+    height: 150px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 3rem;
+}
+
+.reward-content {
+    padding: 20px;
+}
+
+.reward-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.reward-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.reward-points {
+    background: #f59e0b;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.reward-description {
+    color: #64748b;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.reward-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed #e2e8f0;
+}
+
+.reward-level {
+    font-size: 0.9rem;
+    color: #64748b;
+}
+
+.reward-expiry {
+    font-size: 0.9rem;
+    color: #64748b;
+}
+
+.reward-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.reward-btn {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s;
+}
+
+.redeem-btn {
+    background: #3b82f6;
+    color: white;
+}
+
+.details-btn {
+    background: #f1f5f9;
+    color: #475569;
+}
+
+.redeem-btn:hover {
+    background: #2563eb;
+}
+
+.details-btn:hover {
+    background: #e2e8f0;
+}
+
+.reward-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge-available {
+    background: #10b981;
+    color: white;
+}
+
+.badge-redeemed {
+    background: #8b5cf6;
+    color: white;
+}
+
+.badge-expired {
+    background: #64748b;
+    color: white;
+}
+
+/* Top Members */
+.top-members {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.top-members h2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #1e293b;
+    margin-bottom: 25px;
+    font-size: 1.5rem;
+}
+
+.top-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.top-member {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    background: #f8fafc;
+    border-radius: 10px;
+    transition: all 0.3s;
+}
+
+.top-member:hover {
+    background: #f1f5f9;
+    transform: translateX(5px);
+}
+
+.member-rank {
+    width: 50px;
+    height: 50px;
+    background: #3b82f6;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.member-rank.gold {
+    background: #f59e0b;
+}
+
+.member-rank.silver {
+    background: #6b7280;
+}
+
+.member-rank.bronze {
+    background: #92400e;
+}
+
+.member-info {
+    flex: 1;
+}
+
+.member-name {
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 5px;
+}
+
+.member-level {
+    font-size: 0.9rem;
+    color: #64748b;
+    margin-bottom: 5px;
+}
+
+.member-stats {
+    display: flex;
+    gap: 20px;
+    font-size: 0.9rem;
+    color: #475569;
+}
+
+.member-points {
+    font-weight: 600;
+    color: #f59e0b;
+}
+
+.member-actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .levels-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 1024px) {
+    .loyalty-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .loyalty-header {
+        flex-direction: column;
+        gap: 20px;
+        align-items: stretch;
+    }
+    
+    .header-actions {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 768px) {
+    .levels-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .loyalty-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        gap: 15px;
+        align-items: stretch;
+    }
+    
+    .section-actions {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .rewards-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .top-member {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    .member-stats {
+        justify-content: center;
+    }
+    
+    .member-actions {
+        width: 100%;
+        justify-content: center;
+    }
+}

@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestione Ospiti | HotelFlow Manager</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/guests.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fas fa-hotel"></i>
+                <h2>HotelFlow<span>Manager</span></h2>
+            </div>
+            
+            <div class="user-info">
+                <i class="fas fa-user-circle"></i>
+                <h3>Admin</h3>
+                <p>Carmine Dalise</p>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="../index.html" class="sidebar-link">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="dashboard.html" class="sidebar-link">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="bookings.html" class="sidebar-link">
+                    <i class="fas fa-calendar-check"></i>
+                    <span>Prenotazioni</span>
+                    <span class="badge" id="booking-count">12</span>
+                </a>
+                <a href="rooms.html" class="sidebar-link">
+                    <i class="fas fa-bed"></i>
+                    <span>Camere</span>
+                    <span class="badge" id="maintenance-count">5</span>
+                </a>
+                <a href="guests.html" class="sidebar-link active">
+                    <i class="fas fa-users"></i>
+                    <span>Ospiti</span>
+                    <span class="badge" id="vip-count">8</span>
+                </a>
+                <a href="loyalty.html" class="sidebar-link">
+                    <i class="fas fa-crown"></i>
+                    <span>Fedeltà</span>
+                </a>
+                <a href="billing.html" class="sidebar-link">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                    <span>Fatturazione</span>
+                </a>
+                <a href="#" class="sidebar-link">
+                    <i class="fas fa-cog"></i>
+                    <span>Impostazioni</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="hotel-status">
+                    <div class="status-indicator online"></div>
+                    <span>Sistema Online</span>
+                </div>
+                <p>v1.0.0</p>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="guests-header">
+                <h1><i class="fas fa-users"></i> Gestione Ospiti</h1>
+                <div class="header-actions">
+                    <button class="btn-primary" id="add-guest-btn">
+                        <i class="fas fa-user-plus"></i> Nuovo Ospite
+                    </button>
+                    <button class="btn-secondary" id="quick-checkin-btn">
+                        <i class="fas fa-door-open"></i> Check-in Rapido
+                    </button>
+                    <button class="btn-secondary" id="bulk-actions">
+                        <i class="fas fa-tasks"></i> Azioni di Gruppo
+                    </button>
+                </div>
+            </header>
+
+            <!-- Filtri e Ricerca -->
+            <div class="guests-filters">
+                <div class="filter-row">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="guest-search" placeholder="Cerca per nome, email, telefono...">
+                    </div>
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="all">Tutti</button>
+                        <button class="filter-btn" data-filter="vip">VIP</button>
+                        <button class="filter-btn" data-filter="checkin">In Hotel</button>
+                        <button class="filter-btn" data-filter="loyalty">Fedeltà</button>
+                        <button class="filter-btn" data-filter="blacklist">Blacklist</button>
+                    </div>
+                </div>
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <label><i class="fas fa-crown"></i> Livello Fedeltà</label>
+                        <select id="filter-loyalty">
+                            <option value="">Tutti i livelli</option>
+                            <option value="bronze">Bronzo</option>
+                            <option value="silver">Argento</option>
+                            <option value="gold">Oro</option>
+                            <option value="platinum">Platino</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label><i class="fas fa-calendar"></i> Data Registrazione</label>
+                        <input type="text" id="filter-registration" class="datepicker" placeholder="Da...">
+                        <input type="text" id="filter-registration-to" class="datepicker" placeholder="A...">
+                    </div>
+                    <div class="filter-group">
+                        <label><i class="fas fa-flag"></i> Nazionalità</label>
+                        <select id="filter-nationality">
+                            <option value="">Tutte</option>
+                            <option value="IT">Italia</option>
+                            <option value="US">USA</option>
+                            <option value="UK">UK</option>
+                            <option value="DE">Germania</option>
+                            <option value="FR">Francia</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label><i class="fas fa-birthday-cake"></i> Compleanno</label>
+                        <select id="filter-birthday">
+                            <option value="">Qualsiasi</option>
+                            <option value="this-month">Questo mese</option>
+                            <option value="next-month">Prossimo mese</option>
+                            <option value="today">Oggi</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Statistiche Ospiti -->
+            <div class="guests-stats">
+                <div class="guest-stat">
+                    <div class="stat-icon total">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h4>Ospiti Totali</h4>
+                        <p class="stat-number" id="total-guests">156</p>
+                    </div>
+                </div>
+                <div class="guest-stat">
+                    <div class="stat-icon in-hotel">
+                        <i class="fas fa-bed"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h4>In Hotel Ora</h4>
+                        <p class="stat-number" id="current-guests">42</p>
+                    </div>
+                </div>
+                <div class="guest-stat">
+                    <div class="stat-icon vip">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h4>Ospiti VIP</h4>
+                        <p class="stat-number" id="vip-guests">28</p>
+                    </div>
+                </div>
+                <div class="guest-stat">
+                    <div class="stat-icon loyalty">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h4>Programma Fedeltà</h4>
+                        <p class="stat-number" id="loyalty-guests">89</p>
+                    </div>
+                </div>
+                <div class="guest-stat">
+                    <div class="stat-icon birthday">
+                        <i class="fas fa-birthday-cake"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h4>Compleanni Oggi</h4>
+                        <p class="stat-number" id="birthday-guests">3</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vista Grid Ospiti -->
+            <div class="guests-grid" id="guests-grid">
+                <!-- Gli ospiti verranno caricati qui dinamicamente -->
+            </div>
+
+            <!-- Vista Tabella (nascosta inizialmente) -->
+            <div class="guests-table-container" id="guests-table" style="display: none;">
+                <div class="table-header">
+                    <h3><i class="fas fa-list"></i> Elenco Ospiti</h3>
+                    <div class="view-toggle">
+                        <button class="view-btn active" data-view="grid">
+                            <i class="fas fa-th"></i> Grid
+                        </button>
+                        <button class="view-btn" data-view="table">
+                            <i class="fas fa-list"></i> Lista
+                        </button>
+                        <button class="view-btn" data-view="cards">
+                            <i class="fas fa-id-card"></i> Cards
+                        </button>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="guests-list-table">
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" id="select-all-guests"></th>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>Livello Fedeltà</th>
+                                <th>Punti</th>
+                                <th>Prenotazioni</th>
+                                <th>Notti Totali</th>
+                                <th>Spesa Totale</th>
+                                <th>Stato</th>
+                                <th>Azioni</th>
+                            </tr>
+                        </thead>
+                        <tbody id="guests-table-body">
+                            <!-- Gli ospiti verranno caricati qui -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal Nuovo/Modifica Ospite -->
+    <div class="modal" id="guest-modal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h2><i class="fas fa-user-plus"></i> <span id="modal-title">Nuovo Ospite</span></h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="guest-form">
+                    <div class="form-tabs">
+                        <button type="button" class="tab-btn active" data-tab="personal">Dati Personali</button>
+                        <button type="button" class="tab-btn" data-tab="loyalty">Programma Fedeltà</button>
+                        <button type="button" class="tab-btn" data-tab="preferences">Preferenze</button>
+                        <button type="button" class="tab-btn" data-tab="documents">Documenti</button>
+                    </div>
+                    
+                    <!-- Tab Dati Personali -->
+                    <div class="tab-content active" id="personal-tab">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label><i class="fas fa-user"></i> Nome *</label>
+                                <input type="text" id="guest-firstname" required>
+                            </div>
+                            <div class="form-group">
+                                <label><i class="fas fa-user"></i> Cognome *</label>
+                                <input type="text" id="guest-lastname" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label><i class="fas fa-envelope"></i> Email *</label>
+                                <input type="email" id="guest-email" required>
+                            </div>
+                            <div class="form-group">
+                                <label><i class="fas fa-phone"></i> Telefono *</label>
+                                <input type="tel" id="guest-phone" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label><i class="fas fa-birthday-cake"></i> Data di Nascita</label>
+                                <input type="text" id="guest-birthdate" class="datepicker">
+                            </div>
+                            <div class="form-group">
+                                <label><i class="fas fa-venus-mars"></i> Genere</label>
+                                <select id="guest-gender">
+                                    <option value="">Non specificato</option>
+                                    <option value="male">Maschio</option>
+                                    <option value="female">Femmina</option>
+                                    <option value="other">Altro</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label><i class="fas fa-flag"></i> Nazionalità</label>
+                                <select id="guest-nationality">
+                                    <option value="">Seleziona</option>
+                                    <option value="IT">Italia</option>
+                                    <option value="US">Stati Uniti</option>
+                                    <option value="UK">Regno Unito</option>
+                                    <option value="DE">Germania</option>
+                                    <option value="FR">Francia</option>
+                                    <option value="ES">Spagna</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label><i class="fas fa-language"></i> Lingua Preferita</label>
+                                <select id="guest-language">
+                                    <option value="it">Italiano</option>
+                                    <option value="en">Inglese</option>
+                                    <option value="de">Tedesco</option>
+                                    <option value="fr">Francese</option>
+                                    <option value="es">Spagnolo</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label><i class="fas fa-map-marker-alt"></i> Indirizzo</label>
+                            <textarea id="guest-address" rows="2" placeholder="Via, Città, CAP, Stato"></textarea>
+                        </div>
+                    </div>
+                    
+                    <!-- Tab Programma Fedeltà -->
+                    <div class="tab-content" id="loyalty-tab">
+                        <div class="loyalty-status">
+                            <div class="loyalty-card-preview">
+                                <div class="loyalty-card bronze">
+                                    <div class="card-header">
+                                        <i class="fas fa-crown"></i>
+                                        <h4>HotelFlow Rewards</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="guest-name">Nome Ospite</div>
+                                        <div class="member-id">ID: <span id="preview-id">---</span></div>
+                                        <div class="member-level">
+                                            <span class="level-badge bronze">BRONZO</span>
+                                            <span class="points" id="preview-points">0 Punti</span>
+                                        </div>
+                                        <div class="expiry-date">Valida fino: <span id="preview-expiry">31/12/2024</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="loyalty-form">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label><i class="fas fa-medal"></i> Livello Fedeltà *</label>
+                                        <select id="guest-loyalty-level" required>
+                                            <option value="bronze">Bronzo (0-999 punti)</option>
+                                            <option value="silver">Argento (1000-4999 punti)</option>
+                                            <option value="gold">Oro (5000-9999 punti)</option>
+                                            <option value="platinum">Platino (10000+ punti)</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label><i class="fas fa-star"></i> Punti Attuali</label>
+                                        <input type="number" id="guest-points" value="0" min="0">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label><i class="fas fa-calendar"></i> Data Iscrizione</label>
+                                    <input type="text" id="loyalty-join-date" class="datepicker" value="2024-01-01">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label><i class="fas fa-tags"></i> Benefici Attivi</label>
+                                    <div class="benefits-checkboxes">
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" name="benefits" value="welcome-drink" checked>
+                                            <i class="fas fa-cocktail"></i> Drink di Benvenuto
+                                        </label>
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" name="benefits" value="late-checkout">
+                                            <i class="fas fa-clock"></i> Late Check-out
+                                        </label>
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" name="benefits" value="room-upgrade">
+                                            <i class="fas fa-bed"></i> Upgrade Camera
+                                        </label>
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" name="benefits" value="free-breakfast">
+                                            <i class="fas fa-coffee"></i> Colazione Gratuita
+                                        </label>
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" name="benefits" value="spa-discount">
+                                            <i class="fas fa-spa"></i> Sconto SPA
+                                        </label>
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" name="benefits" value="birthday-gift">
+                                            <i class="fas fa-gift"></i> Regalo Compleanno
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tab Preferenze -->
+                    <div class="tab-content" id="preferences-tab">
+                        <div class="form-group">
+                            <label><i class="fas fa-bed"></i> Preferenze Camera</label>
+                            <div class="preferences-checkboxes">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="room-pref" value="high-floor">
+                                    <i class="fas fa-building"></i> Piano Alto
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="room-pref" value="quiet">
+                                    <i class="fas fa-volume-mute"></i> Zona Silenziosa
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="room-pref" value="sea-view">
+                                    <i class="fas fa-water"></i> Vista Mare
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="room-pref" value="away-elevator">
+                                    <i class="fas fa-elevator"></i> Lontano Ascensore
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="room-pref" value="smoking">
+                                    <i class="fas fa-smoking"></i> Camera Fumatori
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="room-pref" value="non-smoking">
+                                    <i class="fas fa-smoking-ban"></i> Camera Non Fumatori
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label><i class="fas fa-utensils"></i> Preferenze Alimentari</label>
+                            <div class="preferences-checkboxes">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="diet-pref" value="vegetarian">
+                                    <i class="fas fa-leaf"></i> Vegetariano
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="diet-pref" value="vegan">
+                                    <i class="fas fa-seedling"></i> Vegano
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="diet-pref" value="gluten-free">
+                                    <i class="fas fa-bread-slice"></i> Senza Glutine
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="diet-pref" value="lactose-free">
+                                    <i class="fas fa-cheese"></i> Senza Lattosio
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="diet-pref" value="halal">
+                                    <i class="fas fa-star-and-crescent"></i> Halal
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="diet-pref" value="kosher">
+                                    <i class="fas fa-star-of-david"></i> Kosher
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label><i class="fas fa-allergies"></i> Allergie & Intolleranze</label>
+                            <textarea id="guest-allergies" rows="3" placeholder="Note su allergie, intolleranze alimentari..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label><i class="fas fa-sticky-note"></i> Note Speciali</label>
+                            <textarea id="guest-special-notes" rows="3" placeholder="Preferenze particolari, richieste speciali..."></textarea>
+                        </div>
+                    </div>
+                    
+                    <!-- Tab Documenti -->
+                    <div class="tab-content" id="documents-tab">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label><i class="fas fa-id-card"></i> Tipo Documento</label>
+                                <select id="guest-id-type">
+                                    <option value="">Seleziona</option>
+                                    <option value="passport">Passaporto</option>
+                                    <option value="id-card">Carta d'Identità</option>
+                                    <option value="driver-license">Patente</option>
+                                    <option value="residence-permit">Permesso di Soggiorno</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label><i class="fas fa-hashtag"></i> Numero Documento</label>
+                                <input type="text" id="guest-id-number">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label><i class="fas fa-calendar"></i> Data di Emissione</label>
+                                <input type="text" id="guest-id-issue" class="datepicker">
+                            </div>
+                            <div class="form-group">
+                                <label><i class="fas fa-calendar"></i> Data di Scadenza</label>
+                                <input type="text" id="guest-id-expiry" class="datepicker">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label><i class="fas fa-building"></i> Ente Emittente</label>
+                            <input type="text" id="guest-id-authority" placeholder="Es: Comune di Roma, Polizia di Stato...">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label><i class="fas fa-camera"></i> Scan Documento</label>
+                            <div class="document-upload">
+                                <div class="upload-area" id="id-upload-area">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <p>Trascina lo scan qui o <span class="browse-link">cerca</span></p>
+                                    <input type="file" id="id-document" accept="image/*,.pdf" style="display: none;">
+                                </div>
+                                <div class="document-preview" id="id-preview"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary modal-close">Annulla</button>
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-save"></i> Salva Ospite
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Check-in/out Rapido -->
+    <div class="modal" id="quick-checkin-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-bolt"></i> Check-in/out Rapido</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="quick-actions-tabs">
+                    <button class="quick-tab active" data-action="checkin">Check-in</button>
+                    <button class="quick-tab" data-action="checkout">Check-out</button>
+                    <button class="quick-tab" data-action="dayuse">Day Use</button>
+                </div>
+                
+                <!-- Check-in Form -->
+                <div class="quick-form active" id="checkin-form">
+                    <div class="form-group">
+                        <label><i class="fas fa-search"></i> Cerca Ospite</label>
+                        <div class="search-guest">
+                            <input type="text" id="checkin-search" placeholder="Nome, email o telefono...">
+                            <button class="btn-small" onclick="searchGuestForCheckin()">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                        <div class="guest-results" id="checkin-results"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-bed"></i> Camera Assegnata</label>
+                        <select id="checkin-room">
+                            <option value="">Seleziona camera disponibile</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-clock"></i> Orario Arrivo</label>
+                        <input type="time" id="checkin-time" value="14:00">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-credit-card"></i> Metodo Pagamento</label>
+                        <select id="checkin-payment">
+                            <option value="cash">Contanti</option>
+                            <option value="card" selected>Carta di Credito</option>
+                            <option value="bank">Bonifico</option>
+                            <option value="company">Azienda</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-sticky-note"></i> Note Rapide</label>
+                        <textarea id="checkin-notes" rows="2" placeholder="Note per il check-in..."></textarea>
+                    </div>
+                    
+                    <button class="btn-primary full-width" onclick="processQuickCheckin()">
+                        <i class="fas fa-door-open"></i> Esegui Check-in
+                    </button>
+                </div>
+                
+                <!-- Check-out Form -->
+                <div class="quick-form" id="checkout-form">
+                    <div class="form-group">
+                        <label><i class="fas fa-search"></i> Cerca Ospite in Hotel</label>
+                        <div class="search-guest">
+                            <input type="text" id="checkout-search" placeholder="Nome, camera...">
+                            <button class="btn-small" onclick="searchGuestForCheckout()">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                        <div class="guest-results" id="checkout-results"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-clock"></i> Orario Partenza</label>
+                        <input type="time" id="checkout-time" value="10:00">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-receipt"></i> Genera Fattura</label>
+                        <div class="invoice-options">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="generate-invoice" checked>
+                                Crea fattura automaticamente
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="send-email">
+                                Invia via email
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="price-summary">
+                        <h4><i class="fas fa-calculator"></i> Riepilogo</h4>
+                        <div class="price-details">
+                            <div class="price-row">
+                                <span>Soggiorno:</span>
+                                <span id="stay-amount">€0.00</span>
+                            </div>
+                            <div class="price-row">
+                                <span>Servizi extra:</span>
+                                <span id="extra-amount">€0.00</span>
+                            </div>
+                            <div class="price-row">
+                                <span>IVA (10%):</span>
+                                <span id="tax-amount">€0.00</span>
+                            </div>
+                            <div class="price-row total">
+                                <span><strong>TOTALE:</strong></span>
+                                <span id="checkout-total">€0.00</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="btn-primary full-width" onclick="processQuickCheckout()">
+                        <i class="fas fa-door-closed"></i> Esegui Check-out
+                    </button>
+                </div>
+                
+                <!-- Day Use Form -->
+                <div class="quick-form" id="dayuse-form">
+                    <div class="form-group">
+                        <label><i class="fas fa-user"></i> Nome Cliente</label>
+                        <input type="text" id="dayuse-name" placeholder="Nome e cognome">
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-calendar"></i> Data</label>
+                            <input type="text" id="dayuse-date" class="datepicker" value="today">
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-clock"></i> Durata</label>
+                            <select id="dayuse-duration">
+                                <option value="4">4 ore</option>
+                                <option value="6">6 ore</option>
+                                <option value="8">8 ore</option>
+                                <option value="12">12 ore</option>
+                                <option value="full">Giornata intera</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-bed"></i> Camera</label>
+                        <select id="dayuse-room">
+                            <option value="">Seleziona camera per day use</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-users"></i> Numero Persone</label>
+                        <input type="number" id="dayuse-guests" min="1" max="4" value="1">
+                    </div>
+                    
+                    <div class="price-summary">
+                        <h4><i class="fas fa-tag"></i> Tariffa Day Use</h4>
+                        <div class="price-details">
+                            <div class="price-row">
+                                <span>Tariffa base:</span>
+                                <span id="dayuse-base">€50.00</span>
+                            </div>
+                            <div class="price-row">
+                                <span>Ore aggiuntive:</span>
+                                <span id="dayuse-extra">€0.00</span>
+                            </div>
+                            <div class="price-row total">
+                                <span><strong>TOTALE:</strong></span>
+                                <span id="dayuse-total">€50.00</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="btn-primary full-width" onclick="processDayUse()">
+                        <i class="fas fa-bolt"></i> Crea Day Use
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Dettagli Ospite -->
+    <div class="modal" id="guest-detail-modal">
+        <div class="modal-content extra-large">
+            <div class="modal-header">
+                <h2><i class="fas fa-user-circle"></i> Dettagli Ospite</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="guest-detail-container" id="guest-detail-content">
+                    <!-- I dettagli verranno caricati qui -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/it.js"></script>
+    <script src="../js/guests.js"></script>
+</body>
+</html>
