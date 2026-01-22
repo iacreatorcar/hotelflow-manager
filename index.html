@@ -3,326 +3,189 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HotelFlow Manager | Sistema Gestione Hotel Professionale</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>HotelFlowManager</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            padding: 20px;
+        }
+        
+        .header {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 15px 20px;
+            margin-bottom: 20px;
+        }
+        
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .logo h1 {
+            color: #2c3e50;
+            font-size: 22px;
+            font-weight: 700;
+        }
+        
+        .logo p {
+            color: #7f8c8d;
+            font-size: 13px;
+            margin-top: 2px;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background-color: #f8f9fa;
+            padding: 8px 15px;
+            border-radius: 20px;
+            border: 1px solid #eaeaea;
+        }
+        
+        .user-icon {
+            background-color: #3498db;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .user-name {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .user-role {
+            color: #7f8c8d;
+            font-size: 13px;
+        }
+        
+        .nav-bar {
+            display: flex;
+            border-top: 1px solid #eee;
+            padding-top: 12px;
+        }
+        
+        .nav-item {
+            padding: 8px 16px;
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            font-size: 14px;
+            border-radius: 6px;
+            transition: all 0.2s;
+            margin-right: 5px;
+            position: relative;
+        }
+        
+        .nav-item:hover {
+            background-color: #f1f8ff;
+            color: #2980b9;
+        }
+        
+        .nav-item.active {
+            background-color: #e3f2fd;
+            color: #2980b9;
+        }
+        
+        .badge {
+            background-color: #3498db;
+            color: white;
+            font-size: 11px;
+            padding: 1px 6px;
+            border-radius: 10px;
+            margin-left: 5px;
+        }
+        
+        .content {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 30px;
+            text-align: center;
+            color: #7f8c8d;
+        }
+        
+        @media (max-width: 768px) {
+            .top-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .nav-bar {
+                flex-wrap: wrap;
+            }
+            
+            .nav-item {
+                margin-bottom: 5px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Header -->
-        <header class="header">
-            <div class="logo-container">
-                <div class="logo">
-                    <!-- LOGO REALE - Modifica percorso se necessario -->
-                    <img src="assets/logo.jpg" alt="HotelFlow Manager Logo" class="logo-image">
-                    <div class="logo-text">
-                        <h1 class="logo-title">HotelFlow<span>Manager</span></h1>
-                        <p class="logo-subtitle">Professional Hotel Management Suite</p>
-                    </div>
-                </div>
+    <div class="header">
+        <div class="top-bar">
+            <div class="logo">
+                <h1>HotelFlowManager</h1>
+                <p>Professional Hotel Management Suite</p>
             </div>
-            
-            <nav class="main-nav">
-                <a href="index.html" class="nav-link active">
-                    <i class="fas fa-home"></i> 
-                    <span>Home</span>
-                </a>
-                <a href="pages/dashboard.html" class="nav-link">
-                    <i class="fas fa-tachometer-alt"></i> 
-                    <span>Dashboard</span>
-                </a>
-                <a href="pages/bookings.html" class="nav-link">
-                    <i class="fas fa-calendar-check"></i>
-                    <span>Prenotazioni</span>
-                    <span class="nav-badge" id="booking-count">12</span>
-                </a>
-                <a href="pages/rooms.html" class="nav-link">
-                    <i class="fas fa-bed"></i>
-                    <span>Camere</span>
-                    <span class="nav-badge" id="room-count">5</span>
-                </a>
-                <a href="pages/guests.html" class="nav-link">
-                    <i class="fas fa-users"></i>
-                    <span>Ospiti</span>
-                </a>
-                <a href="pages/reports.html" class="nav-link">
-                    <i class="fas fa-chart-bar"></i>
-                    <span>Report</span>
-                </a>
-            </nav>
-            
-            <div class="user-actions">
-                <div class="user-profile">
-                    <div class="user-avatar">
-                        <i class="fas fa-user-circle"></i>
-                    </div>
-                    <div class="user-info">
-                        <span class="user-name">Amministratore</span>
-                        <span class="user-role">Admin</span>
-                    </div>
-                    <i class="fas fa-chevron-down dropdown-icon"></i>
+            <div class="user-info">
+                <div class="user-icon">A</div>
+                <div>
+                    <div class="user-name">Admin</div>
+                    <div class="user-role">Amministratore</div>
                 </div>
-            </div>
-        </header>
-
-        <!-- Hero Section -->
-        <section class="hero-section">
-            <div class="hero-content">
-                <div class="hero-badge">
-                    <span><i class="fas fa-star"></i> VERSIONE PRO</span>
-                </div>
-                <h1 class="hero-title">Gestione Hotel <span class="highlight">Intelligente</span></h1>
-                <p class="hero-description">
-                    Sistema completo con dashboard animata in tempo reale, gestione prenotazioni avanzata 
-                    e analisi predittive delle performance. Tutto ciò di cui hai bisogno per gestire 
-                    il tuo hotel in modo efficiente.
-                </p>
-                <div class="hero-actions">
-                    <a href="pages/dashboard.html" class="btn btn-primary">
-                        <i class="fas fa-rocket"></i> 
-                        <span>Dashboard Animata</span>
-                    </a>
-                    <a href="pages/demo.html" class="btn btn-secondary">
-                        <i class="fas fa-play-circle"></i> 
-                        <span>Demo Live</span>
-                    </a>
-                </div>
-                
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <div class="stat-number">12</div>
-                        <div class="stat-label">Prenotazioni Attive</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">5</div>
-                        <div class="stat-label">Camere Occupate</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">8</div>
-                        <div class="stat-label">Ospiti Oggi</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">94%</div>
-                        <div class="stat-label">Soddisfazione</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="hero-visual">
-                <div class="visual-container">
-                    <div class="chart-placeholder animated">
-                        <i class="fas fa-chart-line chart-icon"></i>
-                        <div class="chart-wave"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Demo Access Banner -->
-        <div class="demo-banner">
-            <div class="demo-content">
-                <i class="fas fa-key demo-icon"></i>
-                <div class="demo-info">
-                    <h3>Accesso Demo</h3>
-                    <p>Email: <strong>admin@demo.com</strong> | Password: <strong>demo123</strong></p>
-                </div>
-                <button class="demo-copy" onclick="copyCredentials()">
-                    <i class="fas fa-copy"></i> Copia
-                </button>
             </div>
         </div>
-
-        <!-- Features Grid -->
-        <section class="features-grid">
-            <div class="section-header">
-                <h2>Funzionalità Principali</h2>
-                <p>Tutto il potere di un sistema gestionale professionale</p>
-            </div>
-            
-            <div class="features-container">
-                <div class="feature-card feature-highlight">
-                    <div class="feature-icon">
-                        <i class="fas fa-tachometer-alt-fast"></i>
-                    </div>
-                    <h3>Dashboard Animata</h3>
-                    <p>Visualizza KPI, tendenze e metriche cruciali con grafici interattivi e aggiornamenti in tempo reale.</p>
-                    <ul class="feature-list">
-                        <li><i class="fas fa-check"></i> Grafici in tempo reale</li>
-                        <li><i class="fas fa-check"></i> Widget personalizzabili</li>
-                        <li><i class="fas fa-check"></i> Notifiche live</li>
-                    </ul>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-calendar-alt"></i>
-                    </div>
-                    <h3>Prenotazioni Smart</h3>
-                    <p>Gestione completa del ciclo di vita delle prenotazioni con calendario interattivo e automazioni.</p>
-                    <ul class="feature-list">
-                        <li><i class="fas fa-check"></i> Calendario drag & drop</li>
-                        <li><i class="fas fa-check"></i> Conferma automatica</li>
-                        <li><i class="fas fa-check"></i> Notifiche SMS/Email</li>
-                    </ul>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-chart-pie"></i>
-                    </div>
-                    <h3>Analisi Avanzate</h3>
-                    <p>Report dettagliati su occupazione, ricavi e preferenze clienti per ottimizzare le strategie.</p>
-                    <ul class="feature-list">
-                        <li><i class="fas fa-check"></i> Report personalizzati</li>
-                        <li><i class="fas fa-check"></i> Analisi predittiva</li>
-                        <li><i class="fas fa-check"></i> Export in PDF/Excel</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Tech Stack -->
-        <section class="tech-stack">
-            <div class="section-header">
-                <h2>Tecnologie Utilizzate</h2>
-                <p>Costruito con le migliori tecnologie moderne</p>
-            </div>
-            <div class="tech-icons">
-                <div class="tech-item">
-                    <i class="fab fa-html5 html-color"></i>
-                    <span>HTML5</span>
-                </div>
-                <div class="tech-item">
-                    <i class="fab fa-css3-alt css-color"></i>
-                    <span>CSS3</span>
-                </div>
-                <div class="tech-item">
-                    <i class="fab fa-js-square js-color"></i>
-                    <span>JavaScript</span>
-                </div>
-                <div class="tech-item">
-                    <i class="fab fa-python python-color"></i>
-                    <span>Python</span>
-                </div>
-                <div class="tech-item">
-                    <i class="fas fa-database db-color"></i>
-                    <span>JSON API</span>
-                </div>
-                <div class="tech-item">
-                    <i class="fab fa-git-alt git-color"></i>
-                    <span>Git</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="main-footer">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <div class="footer-logo">
-                        <!-- Logo nel footer -->
-                        <img src="assets/logo.jpg" alt="HotelFlow Logo" class="footer-logo-image">
-                        <div class="footer-brand">
-                            <h3>HotelFlow Manager</h3>
-                            <p>Sistema di Gestione Hotel</p>
-                        </div>
-                    </div>
-                    <p class="footer-description">
-                        Soluzione professionale per la gestione completa del tuo hotel. 
-                        Semplice, potente ed efficiente.
-                    </p>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Link Rapidi</h4>
-                    <ul class="footer-links">
-                        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-                        <li><a href="pages/dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
-                        <li><a href="pages/bookings.html"><i class="fas fa-calendar"></i> Prenotazioni</a></li>
-                        <li><a href="pages/rooms.html"><i class="fas fa-bed"></i> Gestione Camere</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Contatti</h4>
-                    <ul class="footer-contacts">
-                        <li><i class="fas fa-envelope"></i> support@hotelflow.com</li>
-                        <li><i class="fas fa-phone"></i> +39 123 456 7890</li>
-                        <li><i class="fas fa-map-marker-alt"></i> Milano, Italia</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>© 2024 HotelFlow Manager. Sviluppato da Carmine Dalise. Tutti i diritti riservati.</p>
-                <div class="footer-social">
-                    <a href="#"><i class="fab fa-github"></i></a>
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                </div>
-            </div>
-        </footer>
+        
+        <div class="nav-bar">
+            <a href="#" class="nav-item active">Home</a>
+            <a href="#" class="nav-item">Dashboard</a>
+            <a href="#" class="nav-item">Prenotazioni <span class="badge">12</span></a>
+            <a href="#" class="nav-item">Camere <span class="badge">3</span></a>
+            <a href="#" class="nav-item">Ospiti <span class="badge">8</span></a>
+            <a href="#" class="nav-item">Report</a>
+        </div>
+    </div>
+    
+    <div class="content">
+        <h2>Dashboard Principale</h2>
+        <p>Seleziona una voce dal menu per iniziare</p>
     </div>
 
-    <!-- JavaScript -->
-    <script src="js/main.js"></script>
     <script>
-        // Funzione per copiare le credenziali demo
-        function copyCredentials() {
-            const credentials = "Email: admin@demo.com | Password: demo123";
-            navigator.clipboard.writeText(credentials).then(() => {
-                const btn = document.querySelector('.demo-copy');
-                const originalHTML = btn.innerHTML;
-                btn.innerHTML = '<i class="fas fa-check"></i> Copiato!';
-                btn.style.background = '#4CAF50';
-                setTimeout(() => {
-                    btn.innerHTML = originalHTML;
-                    btn.style.background = '';
-                }, 2000);
-            });
-        }
-
-        // Animazione numeri statistiche
-        function animateCounter(element, target) {
-            let current = 0;
-            const increment = target / 50;
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= target) {
-                    element.textContent = target;
-                    clearInterval(timer);
-                } else {
-                    element.textContent = Math.floor(current);
-                }
-            }, 30);
-        }
-
-        // Avvia animazioni quando la pagina è caricata
-        document.addEventListener('DOMContentLoaded', function() {
-            // Animazione contatori hero
-            setTimeout(() => {
-                const counters = document.querySelectorAll('.stat-number');
-                counters.forEach(counter => {
-                    const target = parseInt(counter.textContent);
-                    if (!isNaN(target)) {
-                        animateCounter(counter, target);
-                    }
+        // Aggiunge interattività ai menu
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Rimuove la classe active da tutti i menu
+                document.querySelectorAll('.nav-item').forEach(nav => {
+                    nav.classList.remove('active');
                 });
-            }, 500);
-            
-            // Caricamento logo con fallback
-            const logoImage = document.querySelector('.logo-image');
-            if (logoImage) {
-                logoImage.onerror = function() {
-                    // Se il logo non viene trovato, mostra un placeholder
-                    this.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHJ4PSI4IiBmaWxsPSIjMWUzYzcyIi8+PHBhdGggZD0iTTEyIDI4VjEySDI4VjI4SDEyWiIgZmlsbD0iI2ZmY2MwMCIvPjxjaXJjbGUgY3g9IjIwIiBjeT0iMTUiIHI9IjMiIGZpbGw9IiMxZTNjNzIiLz48cmVjdCB4PSIxNCIgeT0iMjAiIHdpZHRoPSIxMiIgaGVpZ2h0PSI0IiByeD0iMiIgZmlsbD0iIzFlM2M3MiIvPjwvc3ZnPg==';
-                    this.alt = 'Logo placeholder - Caricare logo.jpg in assets/';
-                };
-            }
+                
+                // Aggiunge la classe active al menu cliccato
+                this.classList.add('active');
+            });
         });
     </script>
 </body>
