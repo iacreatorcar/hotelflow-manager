@@ -1,7 +1,8 @@
 {
   "name": "hotelflow-manager",
   "version": "1.0.0",
-  "dependencies": {
-    "express": "^5.2.1"
+  "description": "Professional Hotel Management System",
+  "scripts": {
+    "start": "node server.js"
   }
 }
