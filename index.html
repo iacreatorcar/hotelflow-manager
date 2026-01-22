@@ -3,456 +3,326 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HotelFlowManager PRO</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: #0f172a;
-            color: #e2e8f0;
-            line-height: 1.6;
-            min-height: 100vh;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        /* HEADER */
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding-top: 30px;
-        }
-        
-        .hotel-name {
-            color: #38bdf8;
-            font-size: 2.8rem;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            margin-bottom: 8px;
-            background: linear-gradient(90deg, #38bdf8, #0ea5e9);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .tagline {
-            color: #94a3b8;
-            font-size: 1.1rem;
-            font-weight: 300;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-        }
-        
-        /* NAVIGATION */
-        .nav-menu {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 25px;
-            margin: 35px 0;
-            padding: 20px 0;
-            border-bottom: 1px solid #334155;
-            border-top: 1px solid #334155;
-        }
-        
-        .nav-item {
-            color: #cbd5e1;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1.05rem;
-            padding: 8px 0;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-        
-        .nav-item:hover {
-            color: #38bdf8;
-        }
-        
-        .nav-item::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #38bdf8;
-            transition: width 0.3s ease;
-        }
-        
-        .nav-item:hover::after {
-            width: 100%;
-        }
-        
-        .user-info {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            margin-top: 10px;
-            padding: 12px 25px;
-            background: rgba(30, 41, 59, 0.7);
-            border-radius: 12px;
-            max-width: 300px;
-            margin-left: auto;
-            margin-right: auto;
-            border: 1px solid #475569;
-        }
-        
-        .admin-label {
-            color: #94a3b8;
-            font-size: 0.85rem;
-            font-weight: 400;
-        }
-        
-        .admin-name {
-            color: #38bdf8;
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-        
-        /* MAIN CONTENT */
-        .main-content {
-            background: linear-gradient(145deg, #1e293b, #0f172a);
-            border-radius: 20px;
-            padding: 40px;
-            margin: 30px auto;
-            border: 1px solid #334155;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            max-width: 1000px;
-        }
-        
-        .pro-badge {
-            display: inline-block;
-            background: linear-gradient(90deg, #8b5cf6, #6366f1);
-            color: white;
-            padding: 6px 20px;
-            border-radius: 30px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            margin-bottom: 25px;
-        }
-        
-        .section-title {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: #f8fafc;
-        }
-        
-        .description {
-            color: #cbd5e1;
-            font-size: 1.15rem;
-            margin-bottom: 40px;
-            max-width: 800px;
-        }
-        
-        /* STATS GRID */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 25px;
-            margin: 40px 0;
-        }
-        
-        .stat-card {
-            background: rgba(30, 41, 59, 0.8);
-            border-radius: 15px;
-            padding: 25px;
-            border: 1px solid #475569;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            border-color: #38bdf8;
-        }
-        
-        .stat-title {
-            color: #94a3b8;
-            font-size: 0.95rem;
-            font-weight: 500;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .stat-value {
-            color: #38bdf8;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 5px;
-        }
-        
-        /* DEMO ACCESS */
-        .demo-access {
-            background: rgba(30, 41, 59, 0.9);
-            border-radius: 15px;
-            padding: 30px;
-            margin: 40px 0;
-            border: 1px solid #475569;
-        }
-        
-        .demo-title {
-            color: #f8fafc;
-            font-size: 1.4rem;
-            margin-bottom: 20px;
-        }
-        
-        .credentials {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 25px;
-            align-items: center;
-        }
-        
-        .credential-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .cred-label {
-            color: #94a3b8;
-            font-size: 0.95rem;
-        }
-        
-        .cred-value {
-            color: #10b981;
-            font-weight: 600;
-            font-size: 1.1rem;
-            font-family: 'Courier New', monospace;
-        }
-        
-        .copy-btn {
-            background: linear-gradient(90deg, #10b981, #059669);
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-left: auto;
-        }
-        
-        .copy-btn:hover {
-            background: linear-gradient(90deg, #059669, #047857);
-            transform: scale(1.05);
-        }
-        
-        /* FOOTER */
-        .footer {
-            text-align: center;
-            margin-top: 60px;
-            padding-top: 30px;
-            border-top: 1px solid #334155;
-            color: #94a3b8;
-        }
-        
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin: 25px 0;
-        }
-        
-        .social-link {
-            color: #cbd5e1;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 20px;
-            background: rgba(30, 41, 59, 0.7);
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-        
-        .social-link:hover {
-            color: #38bdf8;
-            background: rgba(56, 189, 248, 0.1);
-            transform: translateY(-3px);
-        }
-        
-        .copyright {
-            font-size: 0.9rem;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid #334155;
-        }
-        
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .hotel-name {
-                font-size: 2.2rem;
-            }
-            
-            .nav-menu {
-                gap: 15px;
-            }
-            
-            .main-content {
-                padding: 25px;
-            }
-            
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .credentials {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .copy-btn {
-                margin-left: 0;
-                width: 100%;
-            }
-            
-            .social-links {
-                flex-direction: column;
-                align-items: center;
-                gap: 15px;
-            }
-        }
-    </style>
+    <title>HotelFlow Manager | Sistema Gestione Hotel Professionale</title>
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
+        <!-- Header -->
         <header class="header">
-            <h1 class="hotel-name">HotelFlowManager</h1>
-            <p class="tagline">Professional Hotel Management Suite</p>
-            
-            <div class="nav-menu">
-                <a href="#" class="nav-item">Home</a>
-                <a href="#" class="nav-item">Dashboard</a>
-                <a href="#" class="nav-item">Prenotazioni</a>
-                <a href="#" class="nav-item">Camere</a>
-                <a href="#" class="nav-item">Ospiti</a>
-                <a href="#" class="nav-item">Report</a>
+            <div class="logo-container">
+                <div class="logo">
+                    <!-- LOGO REALE - Modifica percorso se necessario -->
+                    <img src="assets/logo.jpg" alt="HotelFlow Manager Logo" class="logo-image">
+                    <div class="logo-text">
+                        <h1 class="logo-title">HotelFlow<span>Manager</span></h1>
+                        <p class="logo-subtitle">Professional Hotel Management Suite</p>
+                    </div>
+                </div>
             </div>
             
-            <div class="user-info">
-                <span class="admin-label">Amministratore</span>
-                <span class="admin-name">Admin</span>
+            <nav class="main-nav">
+                <a href="index.html" class="nav-link active">
+                    <i class="fas fa-home"></i> 
+                    <span>Home</span>
+                </a>
+                <a href="pages/dashboard.html" class="nav-link">
+                    <i class="fas fa-tachometer-alt"></i> 
+                    <span>Dashboard</span>
+                </a>
+                <a href="pages/bookings.html" class="nav-link">
+                    <i class="fas fa-calendar-check"></i>
+                    <span>Prenotazioni</span>
+                    <span class="nav-badge" id="booking-count">12</span>
+                </a>
+                <a href="pages/rooms.html" class="nav-link">
+                    <i class="fas fa-bed"></i>
+                    <span>Camere</span>
+                    <span class="nav-badge" id="room-count">5</span>
+                </a>
+                <a href="pages/guests.html" class="nav-link">
+                    <i class="fas fa-users"></i>
+                    <span>Ospiti</span>
+                </a>
+                <a href="pages/reports.html" class="nav-link">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Report</span>
+                </a>
+            </nav>
+            
+            <div class="user-actions">
+                <div class="user-profile">
+                    <div class="user-avatar">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div class="user-info">
+                        <span class="user-name">Amministratore</span>
+                        <span class="user-role">Admin</span>
+                    </div>
+                    <i class="fas fa-chevron-down dropdown-icon"></i>
+                </div>
             </div>
         </header>
-        
-        <main class="main-content">
-            <div class="pro-badge">VERSIONE PRO</div>
-            
-            <h2 class="section-title">Gestione Hotel Intelligente</h2>
-            <p class="description">
-                Sistema completo con dashboard animata in tempo reale, gestione prenotazioni avanzata 
-                e analisi predittive delle performance. Tutto ciò di cui hai bisogno per gestire il 
-                tuo hotel in modo efficiente.
-            </p>
-            
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-title">Dashboard Animata</div>
-                    <div class="stat-value">12</div>
-                    <div class="stat-title">Prenotazioni Attive</div>
+
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span><i class="fas fa-star"></i> VERSIONE PRO</span>
+                </div>
+                <h1 class="hero-title">Gestione Hotel <span class="highlight">Intelligente</span></h1>
+                <p class="hero-description">
+                    Sistema completo con dashboard animata in tempo reale, gestione prenotazioni avanzata 
+                    e analisi predittive delle performance. Tutto ciò di cui hai bisogno per gestire 
+                    il tuo hotel in modo efficiente.
+                </p>
+                <div class="hero-actions">
+                    <a href="pages/dashboard.html" class="btn btn-primary">
+                        <i class="fas fa-rocket"></i> 
+                        <span>Dashboard Animata</span>
+                    </a>
+                    <a href="pages/demo.html" class="btn btn-secondary">
+                        <i class="fas fa-play-circle"></i> 
+                        <span>Demo Live</span>
+                    </a>
                 </div>
                 
-                <div class="stat-card">
-                    <div class="stat-title">Demo Live</div>
-                    <div class="stat-value">5</div>
-                    <div class="stat-title">Camere Occupate</div>
-                </div>
-                
-                <div class="stat-card">
-                    <div class="stat-title">Ospiti Oggi</div>
-                    <div class="stat-value">8</div>
-                    <div class="stat-title">Ospiti Oggi</div>
-                </div>
-                
-                <div class="stat-card">
-                    <div class="stat-title">Soddisfazione</div>
-                    <div class="stat-value">94%</div>
-                    <div class="stat-title">Soddisfazione</div>
-                </div>
-            </div>
-            
-            <div class="demo-access">
-                <h3 class="demo-title">Accesso Demo</h3>
-                <div class="credentials">
-                    <div class="credential-item">
-                        <span class="cred-label">Email:</span>
-                        <span class="cred-value">admin@demo.com</span>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">12</div>
+                        <div class="stat-label">Prenotazioni Attive</div>
                     </div>
-                    <div class="credential-item">
-                        <span class="cred-label">Password:</span>
-                        <span class="cred-value">demo123</span>
+                    <div class="stat-item">
+                        <div class="stat-number">5</div>
+                        <div class="stat-label">Camere Occupate</div>
                     </div>
-                    <button class="copy-btn" id="copyBtn">
-                        <i class="fas fa-copy"></i> Copia Credenziali
-                    </button>
+                    <div class="stat-item">
+                        <div class="stat-number">8</div>
+                        <div class="stat-label">Ospiti Oggi</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">94%</div>
+                        <div class="stat-label">Soddisfazione</div>
+                    </div>
                 </div>
             </div>
-        </main>
-        
-        <footer class="footer">
-            <div class="social-links">
-                <a href="https://iacreatorcar.github.io" target="_blank" class="social-link">
-                    <i class="fab fa-github"></i> GitHub
-                </a>
-                <a href="https://www.linkedin.com/in/carmine-d-alise-3b25024b/" target="_blank" class="social-link">
-                    <i class="fab fa-linkedin"></i> LinkedIn
-                </a>
-                <a href="https://www.youtube.com/watch?v=k0iDrOoFsoc&list=PL-nvLtap-knmpf1GGGt2y3PJY7xmenO1-&index=6" target="_blank" class="social-link">
-                    <i class="fab fa-youtube"></i> YouTube
-                </a>
+            
+            <div class="hero-visual">
+                <div class="visual-container">
+                    <div class="chart-placeholder animated">
+                        <i class="fas fa-chart-line chart-icon"></i>
+                        <div class="chart-wave"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Demo Access Banner -->
+        <div class="demo-banner">
+            <div class="demo-content">
+                <i class="fas fa-key demo-icon"></i>
+                <div class="demo-info">
+                    <h3>Accesso Demo</h3>
+                    <p>Email: <strong>admin@demo.com</strong> | Password: <strong>demo123</strong></p>
+                </div>
+                <button class="demo-copy" onclick="copyCredentials()">
+                    <i class="fas fa-copy"></i> Copia
+                </button>
+            </div>
+        </div>
+
+        <!-- Features Grid -->
+        <section class="features-grid">
+            <div class="section-header">
+                <h2>Funzionalità Principali</h2>
+                <p>Tutto il potere di un sistema gestionale professionale</p>
             </div>
             
-            <p class="copyright">
-                &copy; 2024 HotelFlowManager PRO. Tutti i diritti riservati.
-            </p>
+            <div class="features-container">
+                <div class="feature-card feature-highlight">
+                    <div class="feature-icon">
+                        <i class="fas fa-tachometer-alt-fast"></i>
+                    </div>
+                    <h3>Dashboard Animata</h3>
+                    <p>Visualizza KPI, tendenze e metriche cruciali con grafici interattivi e aggiornamenti in tempo reale.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Grafici in tempo reale</li>
+                        <li><i class="fas fa-check"></i> Widget personalizzabili</li>
+                        <li><i class="fas fa-check"></i> Notifiche live</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3>Prenotazioni Smart</h3>
+                    <p>Gestione completa del ciclo di vita delle prenotazioni con calendario interattivo e automazioni.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Calendario drag & drop</li>
+                        <li><i class="fas fa-check"></i> Conferma automatica</li>
+                        <li><i class="fas fa-check"></i> Notifiche SMS/Email</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <h3>Analisi Avanzate</h3>
+                    <p>Report dettagliati su occupazione, ricavi e preferenze clienti per ottimizzare le strategie.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Report personalizzati</li>
+                        <li><i class="fas fa-check"></i> Analisi predittiva</li>
+                        <li><i class="fas fa-check"></i> Export in PDF/Excel</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tech Stack -->
+        <section class="tech-stack">
+            <div class="section-header">
+                <h2>Tecnologie Utilizzate</h2>
+                <p>Costruito con le migliori tecnologie moderne</p>
+            </div>
+            <div class="tech-icons">
+                <div class="tech-item">
+                    <i class="fab fa-html5 html-color"></i>
+                    <span>HTML5</span>
+                </div>
+                <div class="tech-item">
+                    <i class="fab fa-css3-alt css-color"></i>
+                    <span>CSS3</span>
+                </div>
+                <div class="tech-item">
+                    <i class="fab fa-js-square js-color"></i>
+                    <span>JavaScript</span>
+                </div>
+                <div class="tech-item">
+                    <i class="fab fa-python python-color"></i>
+                    <span>Python</span>
+                </div>
+                <div class="tech-item">
+                    <i class="fas fa-database db-color"></i>
+                    <span>JSON API</span>
+                </div>
+                <div class="tech-item">
+                    <i class="fab fa-git-alt git-color"></i>
+                    <span>Git</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="main-footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <!-- Logo nel footer -->
+                        <img src="assets/logo.jpg" alt="HotelFlow Logo" class="footer-logo-image">
+                        <div class="footer-brand">
+                            <h3>HotelFlow Manager</h3>
+                            <p>Sistema di Gestione Hotel</p>
+                        </div>
+                    </div>
+                    <p class="footer-description">
+                        Soluzione professionale per la gestione completa del tuo hotel. 
+                        Semplice, potente ed efficiente.
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Link Rapidi</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="pages/dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                        <li><a href="pages/bookings.html"><i class="fas fa-calendar"></i> Prenotazioni</a></li>
+                        <li><a href="pages/rooms.html"><i class="fas fa-bed"></i> Gestione Camere</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contatti</h4>
+                    <ul class="footer-contacts">
+                        <li><i class="fas fa-envelope"></i> support@hotelflow.com</li>
+                        <li><i class="fas fa-phone"></i> +39 123 456 7890</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Milano, Italia</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2024 HotelFlow Manager. Sviluppato da Carmine Dalise. Tutti i diritti riservati.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
         </footer>
     </div>
 
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
     <script>
-        // Funzionalità per copiare le credenziali
-        document.getElementById('copyBtn').addEventListener('click', function() {
-            const credentials = `Email: admin@demo.com\nPassword: demo123`;
-            
+        // Funzione per copiare le credenziali demo
+        function copyCredentials() {
+            const credentials = "Email: admin@demo.com | Password: demo123";
             navigator.clipboard.writeText(credentials).then(() => {
-                const originalText = this.innerHTML;
-                this.innerHTML = '<i class="fas fa-check"></i> Copiato!';
-                this.style.background = 'linear-gradient(90deg, #059669, #047857)';
-                
+                const btn = document.querySelector('.demo-copy');
+                const originalHTML = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> Copiato!';
+                btn.style.background = '#4CAF50';
                 setTimeout(() => {
-                    this.innerHTML = originalText;
-                    this.style.background = 'linear-gradient(90deg, #10b981, #059669)';
+                    btn.innerHTML = originalHTML;
+                    btn.style.background = '';
                 }, 2000);
             });
-        });
-        
-        // Evidenzia l'elemento di navigazione attivo
-        document.querySelectorAll('.nav-item').forEach(item => {
-            item.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                document.querySelectorAll('.nav-item').forEach(nav => {
-                    nav.style.color = '#cbd5e1';
-                    nav.style.fontWeight = '500';
+        }
+
+        // Animazione numeri statistiche
+        function animateCounter(element, target) {
+            let current = 0;
+            const increment = target / 50;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 30);
+        }
+
+        // Avvia animazioni quando la pagina è caricata
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animazione contatori hero
+            setTimeout(() => {
+                const counters = document.querySelectorAll('.stat-number');
+                counters.forEach(counter => {
+                    const target = parseInt(counter.textContent);
+                    if (!isNaN(target)) {
+                        animateCounter(counter, target);
+                    }
                 });
-                
-                this.style.color = '#38bdf8';
-                this.style.fontWeight = '600';
-            });
+            }, 500);
+            
+            // Caricamento logo con fallback
+            const logoImage = document.querySelector('.logo-image');
+            if (logoImage) {
+                logoImage.onerror = function() {
+                    // Se il logo non viene trovato, mostra un placeholder
+                    this.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHJ4PSI4IiBmaWxsPSIjMWUzYzcyIi8+PHBhdGggZD0iTTEyIDI4VjEySDI4VjI4SDEyWiIgZmlsbD0iI2ZmY2MwMCIvPjxjaXJjbGUgY3g9IjIwIiBjeT0iMTUiIHI9IjMiIGZpbGw9IiMxZTNjNzIiLz48cmVjdCB4PSIxNCIgeT0iMjAiIHdpZHRoPSIxMiIgaGVpZ2h0PSI0IiByeD0iMiIgZmlsbD0iIzFlM2M3MiIvPjwvc3ZnPg==';
+                    this.alt = 'Logo placeholder - Caricare logo.jpg in assets/';
+                };
+            }
         });
     </script>
 </body>
