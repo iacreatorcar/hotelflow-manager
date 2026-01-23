@@ -62,6 +62,7 @@ A complete, modern hotel management system designed to streamline operations, ma
 | **GitHub Pages** | Static hosting |
 
 ## 📁 Project Structure
+
 hotelflow-manager/
 ├── index.html # Main entry point
 ├── server.js # Local development server
@@ -79,19 +80,22 @@ hotelflow-manager/
 ├── pages/ # Additional pages
 └── README.md # This documentation
 
-Production Deployment
+## 🚀 Production Deployment
 The project is automatically deployed to:
 
 GitHub Pages: On every push to main branch
 
 Vercel: Continuous deployment from repository
 
-👥 User Roles
-Role	Permissions
-Administrator	Full system access, user management, configuration
-Manager	Booking management, reports, daily operations
-Receptionist	Check-in/out, guest services, basic bookings
-Housekeeping	Room status updates, cleaning schedules
+## 👥 User Roles
+
+| Role | Permissions |
+|------|-------------|
+| **Administrator** | Full system access, user management, configuration |
+| **Manager** | Booking management, reports, daily operations |
+| **Receptionist** | Check-in/out, guest services, basic bookings |
+| **Housekeeping** | Room status updates, cleaning schedules |
+
 📱 Responsive Design
 Mobile-first approach
 
@@ -136,14 +140,19 @@ For Hotel Owners
 
 ⏱️ Save time with automated processes
 
-For Hotel Staff
-📱 Easy to use intuitive interface
+## 🎯 Business Benefits
 
-🔄 Real-time updates across all devices
+### For Hotel Owners
+- 📈 **Increase occupancy** with smart pricing
+- 💰 **Maximize revenue** with dynamic rates
+- ⭐ **Improve guest satisfaction** with personalized service
+- ⏱️ **Save time** with automated processes
 
-📊 Clear insights with visual dashboards
-
-🤝 Better guest service with complete information
+### For Hotel Staff
+- 📱 **Easy to use** intuitive interface
+- 🔄 **Real-time updates** across all devices
+- 📊 **Clear insights** with visual dashboards
+- 🤝 **Better guest service** with complete information
 
 🔮 Future Roadmap
 Planned Features
