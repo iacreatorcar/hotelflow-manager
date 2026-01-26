@@ -32,12 +32,6 @@ HotelFlow Manager is a comprehensive, modern hotel management solution designed 
 - Mobile app development (React Native)
 - AI-powered revenue management suggestions
 
-## 🏗️ Project Architecture
-[Inserisci il diagramma Mermaid qui]
-
-## 📸 Screenshots
-[Inserisci screenshot della dashboard, calendario, floor plan]
-
 ## 🔗 Live Demo & Repository
 - **Live Demo**: https://iacreatorcar.github.io/hotelflow-manager/
 - **GitHub Repo**: https://github.com/iacreatorcar/hotelflow-manager
