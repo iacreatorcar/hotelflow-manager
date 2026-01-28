@@ -61,3 +61,10 @@ Il progetto è in continua evoluzione verso un'architettura enterprise:
 
 ## 👤 Contatti
 **Carmine D'Alise** *Senior Digital Experience Lead* [LinkedIn](https://www.linkedin.com/in/carmine-d-alise-3b25024b/) | [GitHub](https://github.com/iacreatorcar)
+
+---
+
+## 🌐 Connected Ecosystem
+Questo progetto è una colonna portante di **[The Bridge](https://the-bridge-portfolio.vercel.app)**, il mio hub professionale dove convergono 20 anni di esperienza tecnica marittima e innovazione software. 
+
+> **Esplora l'intero ecosistema:** [the-bridge-portfolio.vercel.app](https://the-bridge-portfolio.vercel.app)
